@@ -1,0 +1,30 @@
+# Secrets — never commit
+*.token.json
+*token*.json
+.env
+.env.*
+*.pem
+*.key
+.mcp.json
+gcp-oauth.keys.json
+
+# Runtime data
+usage_data.json
+refresh_flag.txt
+*.log
+
+# Deps / venvs / caches
+.venv/
+venv/
+env/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+build/
+
+# OS junk
+__MACOSX/
+.DS_Store
+Thumbs.db

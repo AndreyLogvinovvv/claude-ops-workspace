@@ -1,0 +1,70 @@
+# <Workspace name> — <what this workspace is for>
+
+Short description of what you do here and how Claude helps. Example:
+"I read incoming messages from colleagues and help draft or send answers."
+
+> This is a TEMPLATE. Replace every `<placeholder>` and delete what you don't
+> need. Put real values only in your own private copy — never commit real
+> internal IDs, tokens, or personal data to a shared/public repo.
+
+## Communication style
+
+State how you want Claude to talk. Example:
+"Address me informally. Answer in <language>. Be concise."
+
+## My account
+
+| Field | Value |
+|---|---|
+| Username | `<your-username>` |
+| User ID | `<your-user-id>` |
+
+## Integrations
+
+List the tools Claude can reach (via MCP servers) and the rules for each.
+Be explicit about what is allowed without asking vs. what needs confirmation.
+
+- **Calendar** — `<calendar-mcp>`; timezone `<TZ>`. Read freely.
+- **Chat** — `<chat-mcp>`. Reading history: no ask. **Sending anything: only
+  after explicit confirmation.**
+- **Tickets** — `<tracker-mcp>`. Reading: no ask. **Any write (create / edit /
+  comment / transition): only after showing a draft and getting a "yes".**
+- **Data warehouse** — `<db-mcp>` for `<warehouse>`. Read access to `<schemas>`.
+
+### Conventions worth encoding
+
+Any personal conventions Claude should know, e.g. how to read your calendar
+markers, color legend, default ticket template, naming rules. Example:
+
+| Marker | Meaning |
+|---|---|
+| `<marker>` | `<what it means for availability>` |
+
+## Working instructions
+
+1. IDs are listed below — use the tables, don't search the API.
+2. Read context first, then act.
+3. <any other standing rules>
+
+---
+
+## Contacts
+
+Keep a lookup table so Claude never has to search for people.
+
+| Username | User ID | DM Channel ID | Role |
+|---|---|---|---|
+| `<@person>` | `<user-id>` | `<dm-channel-id>` | `<role>` |
+
+## Channels
+
+| Name | Channel ID |
+|---|---|
+| `<channel-name>` | `<channel-id>` |
+
+## Data sources
+
+Document where the numbers live so Claude can query directly.
+
+- Dashboard `<name>` (`<url>`) -> table `<schema.table>` (grain: `<one row per ...>`).
+- Key fields: `<field>` = `<meaning>` (source: `<source>`).
