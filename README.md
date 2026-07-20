@@ -33,6 +33,26 @@ The workspace is built around three ideas:
 | `CLAUDE.md.template` | Skeleton for a context-first Claude Code workspace |
 | `usage-widget/` | Local usage dashboard (Python server + Chrome extension) |
 | `scripts/auto-backup.ps1` | Daily auto-commit + push (Windows Task Scheduler) |
+| `scripts/sync-push.ps1` / `sync-pull.ps1` | Multi-machine sync over a home NAS (Windows) |
+| `scripts/sync-push.command` / `sync-pull.command` | Same sync scripts for macOS (rsync, auto-mounts the SMB share) |
+| `scripts/swiftbar/` | macOS menubar buttons (⏫ push / ⏬ pull) via [SwiftBar](https://github.com/swiftbar/SwiftBar) |
+
+## Multi-machine sync
+
+I work on the same workspace from several machines (two Windows PCs and a Mac).
+Instead of pushing work-in-progress to git, the whole workspace + Claude's
+persistent memory travel through a NAS share:
+
+- **`sync-push`** — run when you *finish* on a machine: mirrors the workspace,
+  Claude memory (`~/.claude/projects/<project>/memory`), optional local notes,
+  and a short list of gitignored secret files into an off-git `secrets/` folder
+  on the NAS.
+- **`sync-pull`** — run *before* you start on another machine: brings all of it
+  back. Both directions refuse to run against an empty source/target, so a
+  broken mount can't wipe the master copy.
+- Windows uses `robocopy /MIR`, macOS uses `rsync -a --delete`; the scripts are
+  kept in sync pair-wise. On the Mac the ⏫/⏬ SwiftBar buttons make it
+  one-click.
 
 ## Notes
 
