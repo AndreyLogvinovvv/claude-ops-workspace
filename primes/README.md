@@ -6,6 +6,17 @@ Reference data: [KNOWN_MERSENNE_PRIMES.md](KNOWN_MERSENNE_PRIMES.md) — all 52
 known Mersenne primes with digit counts, years and discoverers
 (machine-readable: `known_mersenne_primes.csv`).
 
+Analysis toolkit:
+- `analyze_exponents.py` — stats on known exponents + candidate hunt with
+  hard filters (primality, Sophie Germain, trial factoring).
+- `regression_forecast.py` — frequency regression (Wagstaff heuristic),
+  holdout validation on 1985-2024 discoveries, forecast for the 53rd prime
+  and the first 100M-digit prime.
+- `gap_tests.py` — four statistical tests for hidden patterns in exponent
+  gaps (KS vs exponential, autocorrelation, power-of-2 proximity, CV^2);
+  verdict: indistinguishable from randomness.
+- `plot_mersenne.py` — charts: digits vs exponent, discovery history by era.
+
 ## mersenne.py — Lucas-Lehmer test for Mersenne numbers
 
 Deterministic primality test for M_p = 2^p - 1, built to minimize
