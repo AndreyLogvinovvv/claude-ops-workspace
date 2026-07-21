@@ -2,6 +2,10 @@
 
 Prime number tools.
 
+Reference data: [KNOWN_MERSENNE_PRIMES.md](KNOWN_MERSENNE_PRIMES.md) — all 52
+known Mersenne primes with digit counts, years and discoverers
+(machine-readable: `known_mersenne_primes.csv`).
+
 ## mersenne.py — Lucas-Lehmer test for Mersenne numbers
 
 Deterministic primality test for M_p = 2^p - 1, built to minimize
