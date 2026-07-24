@@ -27,6 +27,69 @@ rationally and test every "maybe there is a pattern" idea properly.
 | 15 | Gap ORDER carries information | LZMA compression vs shuffles | 108 bytes = shuffles | uninformative at n=51 (LZMA overhead dominates) |
 | 16 | Big/small gaps alternate non-randomly | Wald-Wolfowitz runs test | 27 runs vs 26.5, p=0.89 | random |
 | 17 | Rate changed at some point (two regimes) | two-segment Poisson LRT + MC | LRT=7.28, p=0.085 | borderline; same "lucky GIMPS era" bump as #12, still noise-compatible |
+| 18 | Residue classes p mod m, m=3..24 (battery, 29 tests) | chi-square, MC calibrated | only mod-12 family flagged (p=0.024), mod 19 p=0.021 = expected noise | see "Fine structure" below |
+| 19 | p-1 smoother than for random primes | largest-prime-factor share, permutation | 0.542 vs 0.586, p=0.16 | no |
+| 20 | Angles p mod 2pi cluster on the circle | Rayleigh test | R=0.225, p=0.071 | borderline, no mechanism; Vinogradov guarantees asymptotic uniformity - treated as noise |
+
+## Fine structure of the Sophie Germain depletion (mod 12)
+
+The strongest finding of the residue battery, and it matches the mechanism
+in detail. A prime q = 2p+1 can divide M_p only when p = 3 (mod 4)
+(then q = +-1 mod 8). Additionally, if p = 1 (mod 3), then 2p+1 is
+divisible by 3 and can never be a prime killer. Combining both: the only
+class with an ACTIVE killer is p = 11 (mod 12). Observed counts among the
+48 exponents > 12 (uniform expectation: 12 per class):
+
+| p mod 12 | killer status | observed |
+|---|---|---|
+| 1 | impossible (p = 1 mod 4) | 11 |
+| 5 | impossible (p = 1 mod 4) | 20 |
+| 7 | disarmed (3 divides 2p+1) | 12 (exactly at expectation) |
+| 11 | ACTIVE | 5 (most depleted) |
+
+The depleted class is exactly the cursed one, and the disarmed class sits
+exactly at expectation. Formally p=0.024 (does not survive Bonferroni over
+the battery), but this is a refinement of pre-registered hypothesis 9 with
+an exact mechanism, not an independent fishing hit.
+
+Hard check of the mechanism: among winners with p = 3 (mod 4), the value
+2p+1 must be composite - and it is, for every one of them EXCEPT p = 3.
+Edge case: for p = 3, 2p+1 = 7 = M_3 itself; the Sophie Germain divisor
+coincides with the number, so it "divides" without compositing it. The
+only legal exception in the universe.
+
+Practical note for hunting: the curse is fully absorbed by trial factoring
+(the killer 2p+1 ~ 2^29 is found instantly), so among TF-cleaned candidates
+class 11 is as good as any other.
+
+Lesson in test hygiene: the loudest battery signal, "digit sum mod 3,
+p=0.000", was a bug in the test itself - digit sum mod 3 equals p mod 3,
+and primes > 3 never occupy class 0, so the uniform-over-3-classes null
+was impossible by arithmetic. The strongest anomaly in a mass sweep is
+usually your own mistake.
+
+## Geometric interpretation (verified numerically)
+
+M_p equals the product of distances from the point 2 (on the real axis)
+to all p vertices of the regular p-gon inscribed in the unit circle -
+a direct consequence of x^p - 1 = prod (x - zeta^k). Checked to machine
+precision for p = 3, 5, 7, 13 (products exactly 7, 31, 127, 8191). The
+hunt, restated geometrically: find a polygon with 333 million vertices
+whose distance product from the point 2 is indivisible. Beautiful, and
+computationally equivalent to what we already do.
+
+Circle visualizations (local chart "geometry"): rose diagram of p mod 12
+(the depleted class is visible as the eaten petal), and exponents as
+directions p mod 2pi (uniform per Rayleigh, #20).
+
+## Local map fact (2026-07-24)
+
+Between the currently tested exponent 333003109 and the chosen next
+candidate 333003233 there are exactly five prime exponents: 333003113,
+333003119, 333003127, 333003133, 333003211. All five already have known
+factors in PrimeNet (composite, no test needed). So 333003233 is literally
+the next unresolved Mersenne question on the number line - the rational
+choice under the "lower edge" law needs no further justification.
 
 ## The two real structures
 
