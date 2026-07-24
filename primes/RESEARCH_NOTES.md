@@ -30,6 +30,9 @@ rationally and test every "maybe there is a pattern" idea properly.
 | 18 | Residue classes p mod m, m=3..24 (battery, 29 tests) | chi-square, MC calibrated | only mod-12 family flagged (p=0.024), mod 19 p=0.021 = expected noise | see "Fine structure" below |
 | 19 | p-1 smoother than for random primes | largest-prime-factor share, permutation | 0.542 vs 0.586, p=0.16 | no |
 | 20 | Angles p mod 2pi cluster on the circle | Rayleigh test | R=0.225, p=0.071 | borderline, no mechanism; Vinogradov guarantees asymptotic uniformity - treated as noise |
+| 21 | Digit-to-digit transitions differ from random primes | 10x10 transition matrix vs 20 control sets | chi2-dist 86.9 vs control 110.4, p~0.90 | no |
+| 22 | Digit turtle-walks drift differently | net displacement, permutation | 2.01 vs 2.04, p=0.88 | no |
+| 23 | Bit-walk profiles deviate abnormally | max cumsum deviation / sqrt(n) | 1.055 vs 1.148, p=0.25 | no |
 
 ## Fine structure of the Sophie Germain depletion (mod 12)
 
