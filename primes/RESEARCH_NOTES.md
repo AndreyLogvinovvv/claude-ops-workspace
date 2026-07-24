@@ -23,6 +23,10 @@ rationally and test every "maybe there is a pattern" idea properly.
 | 11 | Catalan-Mersenne chain is prime so far | our own Lucas-Lehmer | 2 -> 3 -> 7 -> 127 -> M127 all PRIME | confirmed; next link unknowable forever |
 | 12 | GIMPS era finds MORE primes than theory | Monte Carlo vs Wagstaff rate | P(>=52)=0.26, P(slope>=2.68)=0.40 | plain luck, no excess |
 | 13 | First digits follow Benford | chi-square vs log10(1+1/d) | chi2=1.72, p=0.99 | CONFIRMED (as geometric growth demands) |
+| 14 | Hidden periodicity in positions | periodogram max power vs MC null | power 4.2, p=0.30 | none |
+| 15 | Gap ORDER carries information | LZMA compression vs shuffles | 108 bytes = shuffles | uninformative at n=51 (LZMA overhead dominates) |
+| 16 | Big/small gaps alternate non-randomly | Wald-Wolfowitz runs test | 27 runs vs 26.5, p=0.89 | random |
+| 17 | Rate changed at some point (two regimes) | two-segment Poisson LRT + MC | LRT=7.28, p=0.085 | borderline; same "lucky GIMPS era" bump as #12, still noise-compatible |
 
 ## The two real structures
 
