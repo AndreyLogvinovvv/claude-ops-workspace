@@ -1,16 +1,17 @@
 # Claude Code Ops Workspace
 
 My personal setup for driving day-to-day operational / analytics work with
-[Claude Code](https://claude.com/claude-code): a context-first workspace, a live
-usage widget, and automated git backup.
+[Claude Code](https://claude.com/claude-code): a context-first workspace, a
+custom MCP server, a live usage widget, automated backup and multi-machine sync.
 
 This repo is the **sanitized, shareable** version — the concepts, code and
 methodology, with all organization-specific data removed (contacts, IDs,
-schemas, internal URLs live only in a private copy).
+schemas, internal URLs live only in a private copy). Everything here runs
+daily in production use, not as a demo.
 
 ## The idea
 
-The workspace is built around three ideas:
+The workspace is built around four ideas:
 
 1. **Context as a file (`CLAUDE.md`).** Instead of re-explaining who people are,
    which channels/boards matter, and how I like things done every session, it
@@ -18,20 +19,28 @@ The workspace is built around three ideas:
    [`CLAUDE.md.template`](CLAUDE.md.template) for the structure (with
    placeholders).
 
-2. **A live usage widget.** A tiny local server + browser extension that reads
+2. **Write the missing tool.** When existing integrations don't cover a need,
+   a minimal MCP server does — see [`sheets-mcp/`](sheets-mcp/), a ~100-line
+   Node.js server that lets Claude read/write Google Sheets **including the
+   text of formulas** (a mode no off-the-shelf option had).
+
+3. **A live usage widget.** A tiny local server + browser extension that reads
    Claude usage (5-hour session + weekly) and renders a clean dashboard, so I
    always know how much budget is left. See [`usage-widget/`](usage-widget/).
 
-3. **Hands-off backup.** A scheduled script that commits and pushes the whole
-   workspace once a day, so work is never lost. See
-   [`scripts/auto-backup.ps1`](scripts/auto-backup.ps1).
+4. **Hands-off operations.** A scheduled script commits and pushes the whole
+   workspace daily ([`scripts/auto-backup.ps1`](scripts/auto-backup.ps1));
+   NAS-based sync moves the workspace, Claude's persistent memory and secrets
+   between machines without touching git.
 
 ## Layout
 
 | Path | What |
 |---|---|
 | `CLAUDE.md.template` | Skeleton for a context-first Claude Code workspace |
+| `sheets-mcp/` | Custom MCP server for Google Sheets/Drive (Node.js) |
 | `usage-widget/` | Local usage dashboard (Python server + Chrome extension) |
+| `primes/` | Weekend math: Mersenne-prime exponent analysis toolkit (Python) — 20+ logged hypothesis tests |
 | `scripts/auto-backup.ps1` | Daily auto-commit + push (Windows Task Scheduler) |
 | `scripts/sync-push.ps1` / `sync-pull.ps1` | Multi-machine sync over a home NAS (Windows) |
 | `scripts/sync-push.command` / `sync-pull.command` | Same sync scripts for macOS (rsync, auto-mounts the SMB share) |
